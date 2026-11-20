@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coral Bay Heat — an open-world crime game</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="stage">
+  <canvas id="game" width="1280" height="720"></canvas>
+
+  <div id="hud" class="hidden">
+    <div id="hud-topleft">
+      <div class="bar-row"><span class="bar-label">HP</span><div class="bar"><div id="healthfill"></div></div></div>
+      <div class="bar-row"><span class="bar-label">AR</span><div class="bar armor"><div id="armorfill"></div></div></div>
+      <div id="weapon"></div>
+    </div>
+    <div id="hud-topright">
+      <div id="cash">$0</div>
+      <div id="stars"></div>
+      <div id="clock">08:00</div>
+    </div>
+    <div id="objective" class="hidden"><span id="objective-tag">OBJECTIVE</span><span id="objective-text"></span></div>
+    <div id="speedo" class="hidden">0 km/h</div>
+    <canvas id="minimap" width="232" height="174"></canvas>
+    <div id="prompt" class="hidden"></div>
+    <div id="toast" class="hidden"></div>
+  </div>
+
+  <div id="banner" class="hidden">
+    <div id="banner-title"></div>
+    <div id="banner-sub"></div>
+  </div>
+
+  <div id="dialogue" class="hidden">
+    <div id="dlg-who"></div>
+    <div id="dlg-text"></div>
+    <div id="dlg-next">click / E ▸</div>
+  </div>
+
+  <div id="menu">
+    <div id="menu-inner">
+      <div id="logo-kicker">WELCOME TO</div>
+      <h1 id="logo">CORAL BAY <span>HEAT</span></h1>
+      <p id="tagline">An open-world crime story in a sun-soaked coastal city.<br>
+      Steal cars. Run jobs for Nadia Ferro. Outrun the Coral Bay PD.</p>
+      <div id="menu-buttons">
+        <button id="btn-new" class="menu-btn">NEW GAME</button>
+        <button id="btn-continue" class="menu-btn">CONTINUE</button>
+        <button id="btn-how" class="menu-btn">HOW TO PLAY</button>
+        <button id="btn-sound" class="menu-btn">SOUND: ON</button>
+      </div>
+      <div id="howto" class="hidden">
+        <p><b>Move</b> W A S D / arrows &nbsp; <b>Sprint</b> Shift &nbsp; <b>Aim</b> mouse &nbsp; <b>Shoot / punch</b> left click</p>
+        <p><b>Enter / steal car</b> E &nbsp; <b>Drive</b> W A S D &nbsp; <b>Handbrake</b> Space &nbsp; <b>Reload</b> R</p>
+        <p><b>Weapons</b> 1 fist · 2 pistol · 3 SMG &nbsp; <b>Interact</b> E &nbsp; <b>Pause</b> P / Esc &nbsp; <b>Mute</b> M</p>
+        <p>Follow the gold marker to start missions. Crimes raise your wanted stars;
+        break the police line of sight to cool down, or repaint at Shine Auto.
+        Taxi fares (green $) pay cash any time. Your game saves automatically after every mission.</p>
+      </div>
+      <p id="menu-foot">A complete little open world: traffic, pedestrians, police heat, six story missions, shops and a day that turns to night.</p>
+    </div>
+  </div>
+
+  <div id="pause" class="overlay hidden">
+    <div class="panel">
+      <h2>PAUSED</h2>
+      <div id="pause-stats"></div>
+      <button id="btn-resume" class="menu-btn">RESUME</button>
+      <button id="btn-save" class="menu-btn">SAVE GAME</button>
+      <button id="btn-restart" class="menu-btn">RESTART STORY</button>
+      <button id="btn-quit" class="menu-btn">QUIT TO TITLE</button>
+    </div>
+  </div>
+
+  <div id="shop" class="overlay hidden">
+    <div class="panel">
+      <h2 id="shop-title">IRONHOLD ARMS</h2>
+      <p id="shop-cash"></p>
+      <div id="shop-items"></div>
+      <button id="btn-shop-close" class="menu-btn">LEAVE (E)</button>
+    </div>
+  </div>
+
+  <div id="wasted" class="overlay hidden">
+    <div class="panel bare">
+      <h2 id="wasted-title">WASTED</h2>
+      <p id="wasted-sub"></p>
+      <button id="btn-respawn" class="menu-btn">RESPAWN</button>
+    </div>
+  </div>
+
+  <div id="complete" class="overlay hidden">
+    <div class="panel bare">
+      <h2>STORY COMPLETE</h2>
+      <p id="complete-sub">Dario Venn owns the Coral Bay night now. Free roam, taxi fares and chaos remain — the city is yours.</p>
+      <button id="btn-freeroam" class="menu-btn">KEEP PLAYING</button>
+    </div>
+  </div>
+
+  <pre id="test-report" class="hidden"></pre>
+</div>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>

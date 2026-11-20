@@ -1,0 +1,83 @@
+/* Coral Bay Heat — page, HUD and menu styling for the rebuilt entry. */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 100%; height: 100%; background: #0b1620; overflow: hidden; }
+body { font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif; color: #f5efe4; }
+.hidden { display: none !important; }
+
+#stage { position: fixed; inset: 0; }
+#game { position: absolute; inset: 0; width: 100%; height: 100%; display: block; background: #20303c; }
+
+#hud { position: absolute; inset: 0; pointer-events: none; }
+#hud-topleft { position: absolute; top: 14px; left: 14px; width: 230px; }
+.bar-row { display: flex; align-items: center; gap: 6px; margin-bottom: 5px; }
+.bar-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; width: 22px; text-shadow: 0 1px 2px #000; }
+.bar { flex: 1; height: 13px; background: rgba(0,0,0,.55); border: 1px solid rgba(255,255,255,.35); border-radius: 3px; overflow: hidden; }
+#healthfill { height: 100%; width: 100%; background: linear-gradient(90deg, #e2483d, #ff7a4d); transition: width .15s; }
+#armorfill { height: 100%; width: 0%; background: linear-gradient(90deg, #3d7de2, #6fc3ff); transition: width .15s; }
+#weapon { font-size: 13px; font-weight: 700; letter-spacing: 1px; text-shadow: 0 1px 3px #000; margin-top: 2px; }
+
+#hud-topright { position: absolute; top: 12px; right: 16px; text-align: right; }
+#cash { font-size: 26px; font-weight: 800; color: #ffd94d; text-shadow: 0 2px 4px rgba(0,0,0,.7); letter-spacing: 1px; }
+#stars { font-size: 22px; line-height: 1; color: #ffd94d; text-shadow: 0 1px 3px #000; min-height: 24px; }
+#stars .off { color: rgba(255,255,255,.22); }
+#clock { font-size: 13px; font-weight: 700; letter-spacing: 2px; opacity: .9; text-shadow: 0 1px 2px #000; }
+
+#objective { position: absolute; top: 14px; left: 50%; transform: translateX(-50%); max-width: 560px;
+  background: rgba(8,16,24,.72); border: 1px solid rgba(255,217,77,.5); border-radius: 6px; padding: 7px 14px;
+  font-size: 14px; text-align: center; }
+#objective-tag { color: #ffd94d; font-weight: 800; font-size: 11px; letter-spacing: 2px; margin-right: 8px; }
+
+#speedo { position: absolute; right: 18px; bottom: 16px; font-size: 22px; font-weight: 800; text-shadow: 0 2px 4px #000; }
+#minimap { position: absolute; left: 14px; bottom: 14px; border: 2px solid rgba(255,255,255,.4); border-radius: 8px;
+  background: rgba(10,20,28,.85); box-shadow: 0 4px 14px rgba(0,0,0,.5); }
+#prompt { position: absolute; left: 50%; bottom: 120px; transform: translateX(-50%);
+  background: rgba(8,16,24,.8); border-radius: 6px; padding: 8px 16px; font-size: 15px; font-weight: 700; }
+#prompt b { color: #ffd94d; }
+#toast { position: absolute; left: 50%; bottom: 210px; transform: translateX(-50%);
+  background: rgba(8,16,24,.85); border-left: 4px solid #ffd94d; border-radius: 4px; padding: 9px 16px; font-size: 15px; }
+
+#banner { position: absolute; top: 24%; left: 0; right: 0; text-align: center; pointer-events: none;
+  text-shadow: 0 3px 10px rgba(0,0,0,.8); }
+#banner-title { font-size: 44px; font-weight: 900; letter-spacing: 4px; color: #ffd94d; }
+#banner-sub { font-size: 17px; letter-spacing: 1px; margin-top: 4px; }
+#dialogue { position: absolute; left: 50%; bottom: 26px; transform: translateX(-50%); width: min(680px, 86%);
+  background: rgba(6,12,18,.88); border: 1px solid rgba(255,255,255,.25); border-radius: 8px; padding: 12px 18px 10px; }
+#dlg-who { color: #6fc3ff; font-weight: 800; letter-spacing: 1px; font-size: 13px; margin-bottom: 3px; }
+#dlg-text { font-size: 16px; line-height: 1.45; min-height: 46px; }
+#dlg-next { text-align: right; font-size: 11px; opacity: .65; letter-spacing: 1px; }
+
+#menu { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(180deg, rgba(10,18,28,.42) 0%, rgba(10,18,28,.66) 78%, rgba(10,18,28,.85) 100%); }
+#menu-inner { text-align: center; max-width: 640px; padding: 20px; }
+#logo-kicker { letter-spacing: 8px; font-size: 13px; color: #9adbe8; font-weight: 700; }
+#logo { font-size: 74px; font-weight: 900; letter-spacing: 2px; line-height: 1.02; margin: 6px 0 10px;
+  color: #fff2cf; text-shadow: 0 4px 0 #c7512c, 0 8px 26px rgba(0,0,0,.65); }
+#logo span { color: #ff7847; }
+#tagline { font-size: 16px; line-height: 1.5; opacity: .94; margin-bottom: 22px; }
+#menu-buttons { display: flex; flex-direction: column; gap: 9px; align-items: center; }
+.menu-btn { pointer-events: auto; cursor: pointer; width: 280px; padding: 11px 0; font-size: 16px; font-weight: 800;
+  letter-spacing: 2px; color: #12222e; background: linear-gradient(180deg, #ffd94d, #ffb03a); border: none; border-radius: 6px;
+  box-shadow: 0 3px 0 #a86a14, 0 6px 16px rgba(0,0,0,.45); }
+.menu-btn:hover { filter: brightness(1.08); }
+.menu-btn:active { transform: translateY(2px); box-shadow: 0 1px 0 #a86a14; }
+.menu-btn:disabled { filter: grayscale(.8); opacity: .55; cursor: default; }
+#howto { margin: 18px auto 0; text-align: left; background: rgba(6,12,18,.75); border-radius: 8px; padding: 12px 16px; font-size: 13.5px; line-height: 1.55; }
+#menu-foot { margin-top: 18px; font-size: 12.5px; opacity: .75; }
+
+.overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(5,10,16,.62); }
+.panel { background: rgba(10,20,30,.94); border: 1px solid rgba(255,217,77,.4); border-radius: 10px; padding: 26px 30px;
+  text-align: center; min-width: 340px; max-width: 520px; }
+.panel h2 { letter-spacing: 3px; margin-bottom: 12px; color: #ffd94d; }
+.panel p { font-size: 14px; line-height: 1.5; margin-bottom: 12px; }
+.panel .menu-btn { margin: 5px auto; display: block; }
+.panel.bare { background: none; border: none; }
+#wasted-title { font-size: 64px; letter-spacing: 10px; color: #e2483d; text-shadow: 0 4px 18px rgba(0,0,0,.8); }
+#complete h2 { font-size: 40px; }
+#pause-stats { font-size: 14px; line-height: 1.7; margin-bottom: 14px; opacity: .92; }
+.shop-item { display: flex; justify-content: space-between; align-items: center; gap: 14px; padding: 8px 4px; border-bottom: 1px solid rgba(255,255,255,.12); font-size: 14.5px; text-align: left; }
+.shop-item button { cursor: pointer; font-weight: 800; letter-spacing: 1px; padding: 6px 14px; border: none; border-radius: 5px;
+  background: linear-gradient(180deg, #ffd94d, #ffb03a); color: #12222e; }
+.shop-item button:disabled { filter: grayscale(.8); opacity: .5; cursor: default; }
+
+#test-report { position: absolute; left: 8px; top: 8px; z-index: 99; background: rgba(0,0,0,.85); color: #9fe870;
+  font-size: 12px; padding: 10px; max-width: 60%; max-height: 90%; overflow: auto; white-space: pre-wrap; }
